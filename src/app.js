@@ -29,9 +29,11 @@ connectDB(process.env.DB_URL);
 
 
 // router
-app.use('/images', express.static(path.join(__dirname, '../image')));
+app.use('/images/albums', express.static(path.join(__dirname, '../image/albums')));
+app.use('/images/songs', express.static(path.join(__dirname, '../image/baiHat')));
+app.use('/images/topics', express.static(path.join(__dirname, '../image/chuDe')));
+app.use('/images/playlists', express.static(path.join(__dirname, '../image/playlist')));
 app.use('/file', express.static(path.join(__dirname, '../filemp3')));
-app.use('/api',productRouter);
 app.use('/api',authRouter);
 app.use('/api',albumRouter);
 app.use('/api',chudeRouter);
