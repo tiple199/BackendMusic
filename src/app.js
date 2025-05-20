@@ -1,5 +1,4 @@
 import express from "express";
-import productRouter from "./router/product";
 import { connectDB } from "./config/db";
 import dotenv from "dotenv";
 import morgan from "morgan";
@@ -9,6 +8,7 @@ import albumRouter from "./router/album"
 import chudeRouter from "./router/chude"
 import theloaiRouter from "./router/theloai"
 import playlistRouter from "./router/playlist"
+import favoriteRouter from "./router/favorite"
 import path from "path"
 
 import { fileURLToPath } from 'url';
@@ -40,5 +40,6 @@ app.use('/api',chudeRouter);
 app.use('/api',theloaiRouter);
 app.use('/api',playlistRouter);
 app.use('/api',baihatRouter);
+app.use('/api',favoriteRouter);
 
 export const viteNodeApp = app;
