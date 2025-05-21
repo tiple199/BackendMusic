@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import path from "path";
+import morgan from "morgan";
+import path from "path"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { connectDB } from "./config/db.js";
@@ -11,6 +12,7 @@ import albumRouter from "./router/album.js";
 import chudeRouter from "./router/chude.js";
 import theloaiRouter from "./router/theloai.js";
 import playlistRouter from "./router/playlist.js";
+import favoriteRouter from "./router/favorite.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,17 +28,19 @@ connectDB(process.env.DB_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // cho form-urlencoded
 
-// Static file
-app.use('/images', express.static(path.join(__dirname, '../image')));
+// router
+app.use('/images/albums', express.static(path.join(__dirname, '../image/albums')));
+app.use('/images/songs', express.static(path.join(__dirname, '../image/baiHat')));
+app.use('/images/topics', express.static(path.join(__dirname, '../image/chuDe')));
+app.use('/images/playlists', express.static(path.join(__dirname, '../image/playlist')));
 app.use('/file', express.static(path.join(__dirname, '../filemp3')));
-
-// Routes
-app.use('/api', authRouter);
-app.use('/api', baihatRouter);
-app.use('/api', albumRouter);
-app.use('/api', chudeRouter);
-app.use('/api', theloaiRouter);
-app.use('/api', playlistRouter);
+app.use('/api',authRouter);
+app.use('/api',albumRouter);
+app.use('/api',chudeRouter);
+app.use('/api',theloaiRouter);
+app.use('/api',playlistRouter);
+app.use('/api',baihatRouter);
+app.use('/api',favoriteRouter);
 
 // Khởi động server
 app.listen(PORT, () => {
