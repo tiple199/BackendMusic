@@ -1,5 +1,5 @@
 import express from "express";
-import { addTheloai, getAllTheloais, getTheloaiById } from "../controllers/theloai";
+import { addTheloai, getAllTheloais, getTheloaiById } from "../controllers/theloai.js";
 
 const router = express.Router();
 router.get('/songs',getAllTheloais);

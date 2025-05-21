@@ -1,5 +1,5 @@
 import express from "express";
-import { addSong, getAllSongs, getSongById } from "../controllers/baihat";
+import { addSong, getAllSongs, getSongById } from "../controllers/baihat.js";
 
 const router = express.Router();
 router.get('/songs',getAllSongs);

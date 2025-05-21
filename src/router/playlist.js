@@ -1,5 +1,5 @@
 import express from "express";
-import { addPlaylist, getAllPlaylists, getPlaylistById } from "../controllers/playlist";
+import { addPlaylist, getAllPlaylists, getPlaylistById } from "../controllers/playlist.js";
 
 const router = express.Router();
 router.get('/songs',getAllPlaylists);

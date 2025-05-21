@@ -1,4 +1,4 @@
-import Chude from "../model/chude";
+import Chude from "../model/chude.js";
 export const getAllChudes = async (req,res) => {
     try {
             const data = await Chude.find();

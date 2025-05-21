@@ -1,4 +1,4 @@
-import playlist from "../model/playlist";
+import playlist from "../model/playlist.js";
 export const getAllPlaylists = async (req,res) => {
     try {
             const data = await playlist.find();

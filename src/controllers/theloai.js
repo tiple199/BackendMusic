@@ -1,4 +1,4 @@
-import theloai from "../model/theloai";
+import theloai from "../model/theloai.js";
 export const getAllTheloais = async (req,res) => {
     try {
             const data = await theloai.find();

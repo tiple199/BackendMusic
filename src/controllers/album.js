@@ -1,4 +1,4 @@
-import album from "../model/album";
+import album from "../model/album.js";
 export const getAllAlbums = async (req,res) => {
     try {
             const data = await album.find();

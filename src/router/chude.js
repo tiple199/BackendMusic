@@ -1,5 +1,5 @@
 import express from "express";
-import { addChude, getAllChudes, getChudeById } from "../controllers/chude";
+import { addChude, getAllChudes, getChudeById } from "../controllers/chude.js";
 
 const router = express.Router();
 router.get('/albums',getAllChudes);
