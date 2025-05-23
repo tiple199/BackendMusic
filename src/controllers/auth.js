@@ -2,6 +2,8 @@ import User from "../model/user.js";
 import bcrypt from "bcryptjs";
 export const signup = async (req, res) => {
     const { username, email, password } = req.body;
+    console.log(req.body); // Xem client gửi gì lên
+
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) return res.status(400).json({ message: 'Email đã tồn tại' });
@@ -18,6 +20,7 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body); // Xem client gửi gì lên
 
     try {
         const user = await User.findOne({ email });
@@ -32,7 +35,11 @@ export const signin = async (req, res) => {
         }
 
         // Đăng nhập thành công
-        res.status(200).json({ message: 'Đăng nhập thành công', username: user.username });
+        res.status(200).json({
+            message: 'Đăng nhập thành công',
+            username: user.username,
+            userId: user._id 
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Lỗi máy chủ' });
