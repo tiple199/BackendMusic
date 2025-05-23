@@ -13,6 +13,7 @@ import chudeRouter from "./router/chude.js";
 import theloaiRouter from "./router/theloai.js";
 import playlistRouter from "./router/playlist.js";
 import favoriteRouter from "./router/favorite.js"
+import artistRouter from "./router/artist.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -41,6 +42,7 @@ app.use('/api',theloaiRouter);
 app.use('/api',playlistRouter);
 app.use('/api',baihatRouter);
 app.use('/api',favoriteRouter);
+app.use('/api', artistRouter);
 
 // Khởi động server
 app.listen(PORT, () => {
