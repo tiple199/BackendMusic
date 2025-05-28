@@ -15,6 +15,7 @@ export const getAllSongs = async (req, res) => {
     }
 };
 
+
 export const getSongById = async (req,res) => {
     try {
             const data = await baihat.find({_id: req.params._id});
@@ -35,3 +36,19 @@ export const addSong = async (req,res) => {
             res.status(500).json({message: error.message});
     }
 }
+
+export const getRandomSong = async (req, res) => {
+    try {
+        const data = await baihat.aggregate([{ $sample: { size: 1 } }]);
+
+        if (!data || data.length === 0) {
+            return res.status(404).json({ message: "Không tìm thấy bài hát!" });
+        }
+
+        res.status(200).json(data[0]); // chỉ trả về bài hát đầu tiên trong mảng
+    } catch (error) {
+        console.error("Lỗi getRandomSong:", error);
+        res.status(500).json({ message: error.message });
+    }
+};
+

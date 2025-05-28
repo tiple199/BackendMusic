@@ -6,6 +6,7 @@ const songSchema = new mongoose.Schema({
   HinhBaiHat: { type: String, required: true },
   LinkBaiHat: { type: String, required: true },
   LuotThich: { type: Number, default: 0 },
+  LoiBaiHat: String,
   albumIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Album" }],
   theLoaiIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Theloai" }],
   playListIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Playlist" }]

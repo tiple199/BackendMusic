@@ -44,6 +44,7 @@ app.use('/api',baihatRouter);
 app.use('/api',favoriteRouter);
 app.use('/api', artistRouter);
 
+
 // Khởi động server
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
