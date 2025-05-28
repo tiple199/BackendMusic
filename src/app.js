@@ -14,6 +14,7 @@ import theloaiRouter from "./router/theloai.js";
 import playlistRouter from "./router/playlist.js";
 import favoriteRouter from "./router/favorite.js"
 import artistRouter from "./router/artist.js";
+import userPlaylistRouter from "./router/user_playlist.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -43,6 +44,7 @@ app.use('/api',playlistRouter);
 app.use('/api',baihatRouter);
 app.use('/api',favoriteRouter);
 app.use('/api', artistRouter);
+app.use("/api", userPlaylistRouter);
 
 // Khởi động server
 app.listen(PORT, () => {

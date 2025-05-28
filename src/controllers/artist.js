@@ -4,7 +4,7 @@ import artist from "../model/artist.js";
 export const getAllArtists = async (req, res) => {
     try {
         const data = await artist.find();
-        console.log(data)
+        // console.log(data)
         if (data.length <= 0) {
             return res.status(404).json({ message: "Không tìm thấy nghệ sĩ!" });
         }
