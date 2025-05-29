@@ -15,6 +15,7 @@ export const getAllSongs = async (req, res) => {
     }
 };
 
+
 export const getSongById = async (req,res) => {
     try {
             const data = await baihat.find({_id: req.params._id});
@@ -56,3 +57,55 @@ export const getSongsByPlaylistId = async (req, res) => {
         res.status(500).json({ message: "Lỗi máy chủ." });
     }
 };
+
+export const getRandomSong = async (req, res) => {
+    try {
+        const data = await baihat.aggregate([{ $sample: { size: 1 } }]);
+
+        if (!data || data.length === 0) {
+            return res.status(404).json({ message: "Không tìm thấy bài hát!" });
+        }
+
+        res.status(200).json(data[0]); // chỉ trả về bài hát đầu tiên trong mảng
+    } catch (error) {
+        console.error("Lỗi getRandomSong:", error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Thêm bài hát vào danh sách phát
+export const addSongToPlaylist = async (req, res) => {
+  const { playlistId, songId } = req.body;
+
+  try {
+    const song = await baihat.findById(songId);
+    if (!song) return res.status(404).json({ message: "Bài hát không tồn tại" });
+
+    // Kiểm tra nếu đã có trong playlist
+    if (song.playListIds.includes(playlistId)) {
+      return res.status(200).json({ message: "Bài hát đã có trong playlist" });
+    }
+
+    // Nếu chưa có thì thêm
+    await baihat.findByIdAndUpdate(songId, {
+      $addToSet: { playListIds: playlistId }
+    });
+
+    res.status(200).json({ message: "Đã thêm vào playlist" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Xóa bài hát khỏi danh sách phát
+export const removeSongFromPlaylist = async (req, res) => {
+  const { playlistId, songId } = req.body;
+  try {
+    await baihat.findByIdAndUpdate(songId, { $pull: { playListIds: playlistId } });
+    res.status(200).json({ message: "Đã xóa khỏi playlist" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+

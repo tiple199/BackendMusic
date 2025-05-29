@@ -57,6 +57,7 @@ export const updatePlaylistName = async (req, res) => {
   }
 };
 
+// Xóa playlist
 export const deletePlaylist = async (req, res) => {
   try {
     const { id } = req.params;
