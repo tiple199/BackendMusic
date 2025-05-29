@@ -2,7 +2,7 @@ import User from "../model/user.js";
 import bcrypt from "bcryptjs";
 export const signup = async (req, res) => {
     const { username, email, password } = req.body;
-    console.log(req.body); // Xem client gửi gì lên
+    // console.log(req.body); // Xem client gửi gì lên
 
     try {
         const existingUser = await User.findOne({ email });
@@ -20,7 +20,7 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body); // Xem client gửi gì lên
+    // console.log(req.body); // Xem client gửi gì lên
 
     try {
         const user = await User.findOne({ email });
